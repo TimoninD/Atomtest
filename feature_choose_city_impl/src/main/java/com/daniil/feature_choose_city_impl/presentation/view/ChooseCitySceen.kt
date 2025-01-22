@@ -1,5 +1,6 @@
 package com.daniil.feature_choose_city_impl.presentation.view
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,6 +27,7 @@ import com.daniil.feature_choose_city_impl.presentation.mvi.ChooseCityEvent
 import com.daniil.feature_choose_city_impl.presentation.mvi.ChooseCitySideEffect
 import com.daniil.feature_choose_city_impl.presentation.mvi.ChooseCityState
 import com.daniil.uikit.components.CityItem
+import com.daniil.uikit.components.ContentLoading
 import com.daniil.uikit.components.PrimaryButton
 import com.daniil.uikit.theme.Colors
 import com.daniil.uikit.theme.Font
@@ -52,43 +54,48 @@ fun ChooseCityScreen(
 
 @Composable
 private fun ChooseCityView(state: ChooseCityState, onEvent: (ChooseCityEvent) -> Unit) {
-    Scaffold(
-        modifier = Modifier.systemBarsPadding(),
-        topBar = {
-            Column(modifier = Modifier.padding(16.dp)) {
-                Text(
-                    text = stringResource(R.string.choose_city_title),
-                    style = Font.headline1(Colors.onSurface)
-                )
-            }
-        },
-        bottomBar = {
-            PrimaryButton(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 16.dp)
-                    .padding(bottom = 14.dp),
-                onClick = { onEvent(ChooseCityEvent.OnConfirmClicked) },
-                text = stringResource(R.string.choose_city_confirm)
-            )
-        },
-        content = {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(it),
-                contentPadding = PaddingValues(vertical = 16.dp)
-            ) {
-                items(state.cities) {
-                    CityItem(
-                        city = it,
-                        selected = state.selectedCity == it,
-                        onClick = { onEvent(ChooseCityEvent.OnCityClicked(it)) }
+    ContentLoading(state.isLoading) {
+        Scaffold(
+            modifier = Modifier
+                .background(Colors.onPrimary)
+                .systemBarsPadding(),
+            topBar = {
+                Column(modifier = Modifier.padding(16.dp)) {
+                    Text(
+                        text = stringResource(R.string.choose_city_title),
+                        style = Font.headline1(Colors.onSurface)
                     )
                 }
+            },
+            bottomBar = {
+                PrimaryButton(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                        .padding(bottom = 14.dp),
+                    onClick = { onEvent(ChooseCityEvent.OnConfirmClicked) },
+                    text = stringResource(R.string.choose_city_confirm),
+                    isEnabled = state.selectedCity != null
+                )
+            },
+            content = {
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(it),
+                    contentPadding = PaddingValues(vertical = 16.dp)
+                ) {
+                    items(state.cities) {
+                        CityItem(
+                            city = it,
+                            selected = state.selectedCity == it,
+                            onClick = { onEvent(ChooseCityEvent.OnCityClicked(it)) }
+                        )
+                    }
+                }
             }
-        }
-    )
+        )
+    }
 }
 
 private fun handleSideEffect(
@@ -102,8 +109,9 @@ private fun handleSideEffect(
             .commit {
                 replace(
                     R.id.content,
-                    chargerListRouter.getChargerList()
+                    chargerListRouter.getChargerList(argument = effect.argument)
                 )
+                addToBackStack(null)
             }
     }
 }
@@ -113,8 +121,8 @@ private fun handleSideEffect(
 private fun ChooseCityViewPreview() {
     ChooseCityView(
         state = ChooseCityState(
-            cities = listOf("Moscow", "Volgograd"),
-            selectedCity = "Volgograd"
+            cities = listOf("Москва", "Волгоград"),
+            selectedCity = "Волгоград"
         ),
         onEvent = {}
     )

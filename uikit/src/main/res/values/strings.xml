@@ -3,4 +3,6 @@
 
     <string name="choose_city_title">Выберите город чтобы продолжить</string>
     <string name="choose_city_confirm">Подтвердить</string>
+
+    <string name="charger_list_title">Зарядки в %s</string>
 </resources>

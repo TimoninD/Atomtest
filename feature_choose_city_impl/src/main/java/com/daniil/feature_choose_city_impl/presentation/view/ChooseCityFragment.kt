@@ -31,4 +31,8 @@ class ChooseCityFragment : Fragment() {
             }
         }
     }
+
+    companion object {
+        fun newInstance() = ChooseCityFragment()
+    }
 }

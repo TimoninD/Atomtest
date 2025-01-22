@@ -6,6 +6,6 @@ import com.daniil.feature_choose_city_impl.presentation.view.ChooseCityFragment
 
 class ChooseCityRouterImpl : ChooseCityRouter {
     override fun getChooseCity(): Fragment {
-        return ChooseCityFragment()
+        return ChooseCityFragment.newInstance()
     }
 }
