@@ -1,0 +1,37 @@
+[versions]
+agp = "8.7.3"
+kotlin = "2.0.0"
+coreKtx = "1.15.0"
+fragmentKtx = "1.8.3"
+lifecycleRuntimeKtx = "2.8.7"
+composeBom = "2025.01.00"
+lifecycle = "2.8.7"
+koin = "4.0.0"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
+androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-material = { group = "androidx.compose.material", name = "material" }
+
+koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+
+[bundles]
+compose = ["androidx-ui", "androidx-ui-graphics", "androidx-ui-tooling", "androidx-ui-tooling-preview", "androidx-material"]
+koin = ["koin-core", "koin-compose", "koin-android"]
+
