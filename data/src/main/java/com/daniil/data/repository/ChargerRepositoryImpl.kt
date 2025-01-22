@@ -9,11 +9,13 @@ import kotlinx.coroutines.withContext
 
 class ChargerRepositoryImpl(private val serverApi: ServerMock) : ChargerRepository {
 
-    override suspend fun getChargerList(): List<Charger> {
+    override suspend fun getChargerList(city: String): List<Charger> {
         return withContext(Dispatchers.IO) {
-            serverApi.getChargerList().map {
-                it.toDomain()
-            }
+            serverApi.getChargerList()
+                .filter { it.city == city }
+                .map {
+                    it.toDomain()
+                }
         }
     }
 }

@@ -22,4 +22,32 @@ object Font {
         lineHeight = 36.sp,
         fontWeight = FontWeight.SemiBold
     )
+
+    fun body1(color: Color) = TextStyle.Default.copy(
+        fontSize = 16.sp,
+        color = color,
+        lineHeight = 18.sp,
+        fontWeight = FontWeight.Normal
+    )
+
+    fun subtitle2(color: Color) = TextStyle.Default.copy(
+        fontSize = 16.sp,
+        color = color,
+        lineHeight = 18.sp,
+        fontWeight = FontWeight.SemiBold
+    )
+
+    fun subtitle1(color: Color) = TextStyle.Default.copy(
+        fontSize = 18.sp,
+        color = color,
+        lineHeight = 20.sp,
+        fontWeight = FontWeight.SemiBold
+    )
+
+    fun body2(color: Color) = TextStyle.Default.copy(
+        fontSize = 14.sp,
+        color = color,
+        lineHeight = 16.sp,
+        fontWeight = FontWeight.Normal
+    )
 }

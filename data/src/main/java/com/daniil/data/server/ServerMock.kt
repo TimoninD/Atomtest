@@ -8,14 +8,14 @@ class ServerMock {
 
     suspend fun getCities(): List<String> {
         delay(1_000)
-        return listOf("Moscow", "Saint Petersburg")
+        return listOf("Москва", "Санкт-Петербург")
     }
 
     suspend fun getChargerList(): List<ChargerResponse> {
         delay(1_000)
         return listOf(
             ChargerResponse(
-                city = "Moscow",
+                city = "Москва",
                 charger = ChargerData(
                     name = "Энергия Москвы",
                     busy = true,
@@ -23,7 +23,7 @@ class ServerMock {
                 )
             ),
             ChargerResponse(
-                city = "Moscow",
+                city = "Москва",
                 charger = ChargerData(
                     name = "Lipgart",
                     busy = false,
@@ -31,7 +31,7 @@ class ServerMock {
                 )
             ),
             ChargerResponse(
-                city = "Saint Petersburg",
+                city = "Санкт-Петербург",
                 charger = ChargerData(
                     name = "Станция зарядки электромобилей",
                     busy = true,
@@ -39,7 +39,7 @@ class ServerMock {
                 )
             ),
             ChargerResponse(
-                city = "Moscow",
+                city = "Москва",
                 charger = ChargerData(
                     name = "Zevs",
                     busy = false,
@@ -47,7 +47,7 @@ class ServerMock {
                 )
             ),
             ChargerResponse(
-                city = "Saint Petersburg",
+                city = "Санкт-Петербург",
                 charger = ChargerData(
                     name = "Punkt E",
                     busy = false,

@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.daniil.uikit.theme.Colors
+import com.daniil.uikit.theme.Font
 
 @Composable
 fun CityItem(
@@ -40,7 +41,10 @@ fun CityItem(
                     onClick = onClick
                 )
         ) {
-            Text(city)
+            Text(
+                text = city,
+                style = Font.body1(Colors.onSurface)
+            )
             Spacer(Modifier.weight(1f))
             RadioButton(
                 selected = selected,
@@ -58,7 +62,7 @@ fun CityItem(
 @Preview
 private fun CityItemPreview() {
     Column {
-        CityItem(city = "Moscow", selected = false, onClick = {})
-        CityItem(city = "Moscow", selected = false, onClick = {})
+        CityItem(city = "Москва", selected = false, onClick = {})
+        CityItem(city = "Москва", selected = false, onClick = {})
     }
 }
